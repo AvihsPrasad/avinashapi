@@ -34,6 +34,11 @@ app.use(function(req, res, next) {
 });
 
 app.use('/api', routes);
+app.use(express.static(path.join(__dirname, '/views')));
+app.get('/', function (req, res) {
+  // res.send('hello world')
+  res.render('index.html');
+})
 
 const dbConnection = mongoose.connection;
 dbConnection.on("error", (err) => console.log(`Connection error ${err}`));
